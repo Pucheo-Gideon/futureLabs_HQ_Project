@@ -6,7 +6,7 @@ import { PostComponent } from "@/PostComponent/IPostCard";
 import { useState } from "react";
 import { postArrays } from "@/Interface/postInterface";
 import DrawerAppBar from "@/AppBarComponents/appBar";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Stack, Box } from "@mui/material";
 import { PostWithComment } from "@/CommentComponent/CommentsTab";
 import PermanentDrawerLeft from "@/Drawer/Drawer";
@@ -15,6 +15,10 @@ import PermanentDrawerLeft from "@/Drawer/Drawer";
 // const nunito_Sans = Nunito_Sans({ subsets: ["latin"] });
 export default function Home() {
   // const [post, setPost] = useState<Array>(postArrays)
+
+  const [show,setShow] = useState(false)
+
+
 
   return (
     <>
@@ -39,11 +43,13 @@ export default function Home() {
             width: "83%",
             flexDirection: "row",
             ml: "250px",
+            px:'10px',
             // alignItems: "center",
             // paddingLeft: "200px",
             mt: "90px",
             border: "red 2px solid",
             // marginLeft: "40px"
+            gap:'10px'
           }}
         >
           <Stack
@@ -51,18 +57,21 @@ export default function Home() {
               flexGrow: 1,
               maxWidth: "900px",
               border: "red 2px solid",
-              ml: "20px",
-              mr: "20px",
               gap: "20px",
               // pl: { sm: "", md: "40px" },
               // pr: { sm: "", md: "24px" },
             }}
           >
             {postArrays.map((item) => {
-              return <PostComponent {...item} />;
+              return <Box onClick={()=>setShow(val=>!val)} minHeight="220px" border='1px solid blue'>
+                <Typography> {item.messageTitle} </Typography>
+              </Box>
             })}
           </Stack>
-          <PostWithComment />
+          { show ?  <Box minHeight="90vh" border="1px solid red">
+
+          </Box>: null}
+          {/* <PostWithComment /> */}
         </Box>
         {/* </div> */}
       {/* </Container> */}
